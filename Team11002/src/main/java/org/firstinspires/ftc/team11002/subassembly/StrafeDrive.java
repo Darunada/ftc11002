@@ -84,7 +84,10 @@ public class StrafeDrive {
     protected void logTelemetry(String message, boolean forceUpdate) {
         if(DEBUG_MODE) {
             telemetry.addData(debugCaption, message);
-            telemetry.update();
+
+            if(forceUpdate) {
+                telemetry.update();
+            }
         }
     }
 
