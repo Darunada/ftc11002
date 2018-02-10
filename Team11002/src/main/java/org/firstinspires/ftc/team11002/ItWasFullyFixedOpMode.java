@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.Gyroscope;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.team11002.subassembly.ColorFlag;
 import org.firstinspires.ftc.team11002.subassembly.StrafeDrive;
 import org.firstinspires.ftc.team11002.subassembly.VerticalArm;
 
@@ -16,18 +17,20 @@ import org.firstinspires.ftc.team11002.subassembly.VerticalArm;
  */
 
 @TeleOp
-public class HelloWorldOpMode extends LinearOpMode {
+public class ItWasFullyFixedOpMode extends LinearOpMode {
 
     private boolean DEBUG_MODE = true;
 
     private StrafeDrive strafeDrive;
     private VerticalArm verticalArm;
+    private ColorFlag colorFlag;
 
     @Override
     public void runOpMode() {
 
         this.strafeDrive = new StrafeDrive(hardwareMap, telemetry, gamepad1, DEBUG_MODE);
         this.verticalArm = new VerticalArm(hardwareMap, telemetry, gamepad1, DEBUG_MODE);
+        this.colorFlag = new ColorFlag(hardwareMap, telemetry, gamepad1, DEBUG_MODE);
 
         telemetry.addData("Status", "Initialized");
         telemetry.update();
@@ -40,6 +43,7 @@ public class HelloWorldOpMode extends LinearOpMode {
         while (opModeIsActive()) {
             this.strafeDrive.realtimeDrive();
             this.verticalArm.realtimeArm();
+            this.colorFlag.realtimeFlag();
 
             telemetry.update();
         }

@@ -15,6 +15,11 @@ public class StrafeDrive {
     private boolean DEBUG_MODE = false;
     private String debugCaption = "strafeDrive";
 
+    /**
+     *
+     */
+    private double AUTO_STRAFE_SPEED = 0.5d;
+
     private DcMotor right_drive;
     private DcMotor left_drive;
     private DcMotor strafe_drive;
@@ -119,5 +124,19 @@ public class StrafeDrive {
         strafe_drive.setPower(strafe);
 
         logTelemetry("drive: " + drive + "turn: " + turn + "left: " + left + " right:" + right + " strafe:" + strafe);
+    }
+
+    public void strafeLeft() {
+        strafe_drive.setPower(-1.0d * AUTO_STRAFE_SPEED);
+    }
+
+    public void strafeRight() {
+        strafe_drive.setPower(AUTO_STRAFE_SPEED);
+    }
+
+    public void reset() {
+        left_drive.setPower(0.0d);
+        right_drive.setPower(0.0d);
+        strafe_drive.setPower(0.0d);
     }
 }
